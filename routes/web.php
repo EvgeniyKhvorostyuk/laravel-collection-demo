@@ -11,4 +11,11 @@
 |
 */
 
-Route::get('/', 'ItemController@index');
+Route::get('/', function() {
+    return view('home');
+})->name('home');
+
+Route::resource('/items', 'ItemController');
+Route::get('/sources', function() {
+    return view('items.index');
+});
