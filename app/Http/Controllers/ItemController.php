@@ -65,7 +65,9 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Item::find($id);
+
+        return $item;
     }
 
     /**
@@ -77,7 +79,13 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = Item::find($id);
+        $item->title = request('title');
+        $item->link = request('link');
+
+        $item->save();
+
+        return response('/sources', 201);
     }
 
     /**
