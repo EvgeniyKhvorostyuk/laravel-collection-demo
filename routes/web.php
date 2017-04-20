@@ -17,7 +17,7 @@ Route::get('/', function() {
 
 
 Route::get('/sources', function() {
-    return view('items.index');
+    return view('sources.index');
 });
 Route::resource('items', 'ItemController');
 // Route::post('/sources', 'ItemController@store');
