@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Item;
+use Auth;
 
 class ItemController extends Controller
 {
@@ -14,7 +15,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
+        $items = Auth::user()->items;
 
         return $items;
     }
@@ -37,11 +38,10 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        $item = new Item;
-        $item->title = request('title');
-        $item->link = request('link');
-
-        $item->save();
+        Auth::user()->items()->create([
+            'title' => request('title'),
+            'link' => request('link')
+        ]);
 
         return response('/sources', 201);
     }
@@ -65,7 +65,7 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        $item = Item::find($id);
+        $item = Auth::user()->items()->find($id);
 
         return $item;
     }
@@ -79,7 +79,7 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $item = Item::find($id);
+        $item = Auth::user()->items()->find($id);
         $item->title = request('title');
         $item->link = request('link');
 
@@ -96,7 +96,7 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        $item = Item::find($id);
+        $item = Auth::user()->items()->find($id);
         $item->delete();
 
         return response('/sources', 201);

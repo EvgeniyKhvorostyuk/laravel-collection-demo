@@ -2,6 +2,6 @@
 
 @section('content')
     
-  <h1>Hello, Guest</h1>
+  @if (Auth::check()) <h1>Hello, {{ Auth::user()->name }}</h1> @else <h1>Hello, Guest</h1> @endif
 
 @endsection

@@ -15,7 +15,6 @@ Route::get('/', function() {
     return view('home');
 })->name('home');
 
-
 Route::get('/sources', function() {
     return view('sources.index');
 });
