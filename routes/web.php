@@ -20,4 +20,11 @@ Route::get('/sources', function() {
     return view('sources.index');
 });
 Route::resource('items', 'ItemController');
-// Route::post('/sources', 'ItemController@store');
+
+Route::get('/register', 'RegisterController@create');
+Route::post('/register', 'RegisterController@store');
+
+Route::get('/login', 'SessionController@create');
+Route::post('/login', 'SessionController@store');
+
+Route::get('/logout', 'SessionController@destroy');
