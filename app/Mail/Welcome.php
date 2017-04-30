@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SuccessRegistered extends Mailable
+class Welcome extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,6 +30,6 @@ class SuccessRegistered extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.registered');
+        return $this->markdown('emails.welcome');
     }
 }
